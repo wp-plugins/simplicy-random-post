@@ -1,0 +1,43 @@
+/*Mise en forme Widget Simplicy random post */
+/*Largeur du widget*/
+.SP-random-post { width:100%;} 
+/* Couleur des liens */
+.SP-random-post a { color:#333333; } 
+/* Mise en forme des liens*/
+.SP-random-post a:hover { text-decoration:none; } 
+/* Alignement du texte */
+.SP-random-post p { float:left;} 
+/* Mise en forme image alignement, bordure , marge */
+.simplicy-random-post-img { 
+border:solid 1px #dedede ;
+float:left;padding: 3px 3px 0 3px;
+margin-top:6px;
+margin-bottom:6px;
+margin-right:5px;
+ clear:both;
+} 
+.simplicy-random-post{ margin-bottom:5px; margin-top:5px; list-style:none; !important }
+ /* Séparation et espace entre les articles */
+.simplicy-random-post-content{ 
+border-bottom:solid 1px #CCCCCC; 
+clear:both; 
+margin-top:20px;
+} 
+.simplicy-random-post-clear{ height:1px ; width:100%; clear:both; !important}
+/* Mise en forme date alignement, taille de la police , marge */
+.simplicy-date_random-post {
+font-size:10px;
+ line-height:15px;
+ width:auto; 
+ height:15px; 
+ text-align:left; 
+ padding-bottom:5px; 
+ float:left; 
+ clear:both;
+ } 
+ 
+.SP-random-post-clear{ clear:both; width:100%; height:1px; margin-top:5px; border-bottom: dotted 1px #CCCCCC;}
+.icon-reload { width:36px; height:22px; float:right; background:url(../img/reload_icon.png) no-repeat;}
+#refreshTime{ display:none;} 
+ 
+ 

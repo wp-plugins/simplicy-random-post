@@ -1,0 +1,87 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simplicy random post\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-21 16:00+0100\n"
+"PO-Revision-Date: 2011-12-21 16:00+0100\n"
+"Last-Translator: \n"
+"Language-Team: naxialis\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../func/function.php:73
+msgid "Il n&acute;ya pas d&acute;articles."
+msgstr "Il n&acute;ya pas d&acute;articles."
+
+#: ../func/function.php:99
+msgid "Afficher des articles alatoire avec miniature dans votre sidebar."
+msgstr "Afficher des articles alatoire avec miniature dans votre sidebar."
+
+#: ../func/function.php:101
+msgid "Simplicy Random posts"
+msgstr "Simplicy Random posts"
+
+#: ../func/function.php:105
+msgid "Articles au hazard"
+msgstr "Articles au hazard"
+
+#: ../func/function.php:115
+msgid "Titre du Widget"
+msgstr "Titre du Widget"
+
+#: ../func/function.php:116
+msgid "Nombre d&acute;article al&eacute;atoire"
+msgstr "Nombre d&acute;article al&eacute;atoire"
+
+#: ../func/function.php:119
+msgid "Ici vous pouvez indiquer le mois de publication"
+msgstr "Ici vous pouvez indiquer le mois de publication"
+
+#: ../func/function.php:123
+msgid "Ici vous pouvez indiquer l&acute;ann&eacute;e de publication"
+msgstr "Ici vous pouvez indiquer l&acute;ann&eacute;e de publication"
+
+#: ../func/function.php:129
+msgid "Categorie"
+msgstr "Categorie"
+
+#: ../func/function.php:130
+msgid "ALL"
+msgstr "ALL"
+
+#: ../func/function.php:135
+msgid "Voulez-vous afficher une vignette ?"
+msgstr "Voulez-vous afficher une vignette ?"
+
+#: ../func/function.php:137
+msgid "Taille de la Vignette"
+msgstr "Taille de la Vignette"
+
+#: ../func/function.php:139
+msgid "Afficher un extrait ?"
+msgstr "Afficher un extrait ?"
+
+#: ../func/function.php:141
+msgid "Longueur de l&acute;extrait :"
+msgstr "Longueur de l&acute;extrait :"
+
+#: ../func/function.php:142
+msgid "actualisation automatique?"
+msgstr "actualisation automatique?"
+
+#: ../func/function.php:143
+msgid "Intervalle en seconde de actualisation automatique"
+msgstr "Intervalle en seconde de actualisation automatique"
+
+#: ../func/function.php:163
+msgid "Random Posts"
+msgstr "Random Posts"
+
