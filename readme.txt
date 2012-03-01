@@ -48,6 +48,8 @@ screenshot-2.jpg
 == Changelog ==
 
 = Version 1.0 (22/12/2011) = <br />
+Version 1.5 (01/03/2012)<br />
+<p> fixing bugs </p>
 
 
 

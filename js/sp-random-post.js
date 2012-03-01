@@ -59,7 +59,7 @@ by naxialis
         xmlHttp.open("GET", url, true);
 		xmlHttp.setRequestHeader("Content-type", "charset=UTF-8");
 		if($('random-post-more')||0)
-			$('random-post-more').innerHTML='<DIV style="background:url('+baseurl+'plugins/sp-random-post/img/loading.gif) left center no-repeat;padding-left:20px;'+')" class="ajax-loader">Loading...<p></p></DIV>';
+			$('random-post-more').innerHTML='<DIV style="background:url('+baseurl+'plugins/simplicy-random-post/img/loading.gif) left center no-repeat;padding-left:20px;'+')" class="ajax-loader">Loading...<p></p></DIV>';
 		$('wp-random-posts').style.cursor = 'wait';
         xmlHttp.onreadystatechange = function() {
 			if (xmlHttp.readyState == 4 || xmlHttp.readyState=="complete") {

@@ -1,4 +1,5 @@
 <?php
+
 function WARP__errorpost($ErrMsg) {
     header('HTTP/1.0 500 Internal Server Error');
 	header('Content-Type: text/plain;charset=UTF-8');
@@ -54,16 +55,19 @@ function WARP_sp1_Random_posts($args=''){
 			// image
 			
 			$thumb=vp_get_thumbs_random_url($post->post_content); 
-  				
+  			$output.='<div class="SP-random-post-clear-top"></div>';	
 			// image fin
-			if($args['thumbsaffiche']!=0)$output.='<img  class="simplicy-random-post-img"" width="'.$args['thumbsrand'].'" height="'.$args['thumbsrand'].'" src="'.$thumb.'" alt="" />';
-			$output.='<li id="random-post-'.get_the_ID().'" class="simplicy-random-post"><div class="random-post-title"><a title="'.get_the_title().'" class="random-post-link" href="'.get_permalink().'">'.get_the_title().'</a>';
+			if($args['thumbsaffiche']!=0)$output.='<img  class="simplicy-random-post-img" width="'.$args['thumbsrand'].'" height="'.$args['thumbsrand'].'" src="'.$thumb.'" alt="" />';
+			$output.='<li id="random-post-'.get_the_ID().'" class="simplicy-random-post"><div class="random-post-title"><a title="'.get_the_title().'" href="'.get_permalink().'">'.get_the_title().'</a>';
 			
+			$output.='<dd class="simplicy-date_random-post">'.get_the_date().'</dd>';
 		 
 			$output.='</div>';
 			 
 			if($args['excerpt']!=0)$output.='<div class="random-post-excerpt">'.WARP_SP_Random_posts_substr(strip_tags(get_the_content()),(int)$args['length']).'</div>';;
-			$output.='</li><div class="SP-random-post-clear"></div>';
+			$output.='</li><div class="SP-random-post"></div>';
+			
+			$output.='<div class="SP-random-post-clear"></div>';
 			
 		endwhile;
 		wp_reset_query();
@@ -89,7 +93,7 @@ function WARP_SP_Random_posts_substr($str,$length){
 }
 
 function WARP__addScript(){
-	$script = '<script type="text/javascript" src="' . get_bloginfo('wpurl') . '/wp-content/plugins/sp-random-post/js/sp-random-post.js"></script>';
+	$script = '<script type="text/javascript" src="' . get_bloginfo('wpurl') . '/wp-content/plugins/simplicy-random-post/js/sp-random-post.js"></script>';
 	echo $script;
 }
 if(get_option("SP-Random-files")!='1')add_action ('wp_head', 'WARP__addScript');
