@@ -1,5 +1,5 @@
 /*!
-Simplicy Random Post
+Simplicy Random Post 1.5
 by naxialis
 */
 

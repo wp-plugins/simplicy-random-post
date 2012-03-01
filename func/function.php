@@ -1,5 +1,4 @@
 <?php
-
 function WARP__errorpost($ErrMsg) {
     header('HTTP/1.0 500 Internal Server Error');
 	header('Content-Type: text/plain;charset=UTF-8');

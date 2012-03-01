@@ -7,10 +7,8 @@ Version: 1.5
 Author: naxialis
 Author URI: http://www.naxialis.com
 */
-
 load_plugin_textdomain('SP-Random-Post', false, basename(dirname(__FILE__)) . '/lang');
 require_once(dirname(__FILE__).'/func/function.php');
-wp_enqueue_style('simplicy_random_post', '/wp-content/plugins/simplicy-random-post/css/simplicy_random_post.css');
 /* Register our stylesheet. */
-   
+wp_enqueue_style('simplicy_random_post', '/wp-content/plugins/simplicy-random-post/css/simplicy_random_post.css');
 ?>
