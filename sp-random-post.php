@@ -3,7 +3,7 @@
 Plugin Name: Simplicy Random Post
 Plugin URI: http://www.naxialis.com
 Description: Afficher des articles al&eacute;atoire dans votre sidebar.
-Version: 1.5
+Version: 1.6
 Author: naxialis
 Author URI: http://www.naxialis.com
 */

@@ -1,4 +1,4 @@
-/* Simplicy random post 1.5 */
+/* Simplicy random post 1.6 */
 
 /*Mise en forme Générale du widget*/
 .SP-random-post{ 
@@ -6,9 +6,10 @@ list-style:none; !important
 margin-bottom:10px; 
 margin-top:10px;
 width:100%;
-
-
  } 
+#random-post-widget li {
+ list-style:none; 
+}
 /* Couleur des liens */
 .SP-random-post a { } 
 /* Mise en forme des liens*/

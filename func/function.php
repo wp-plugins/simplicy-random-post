@@ -53,10 +53,11 @@ function WARP_sp1_Random_posts($args=''){
 		
 			// image
 			
-			$thumb=vp_get_thumbs_random_url($post->post_content); 
+			if (has_post_thumbnail()) {
+			$thumb = get_post_thumbnail_id(); $img_url = wp_get_attachment_url( $thumb,'full' ); $image = sp_post_ramdom_resize( $img_url, $args['thumbsrand'], $args['thumbsrand'], true ); 
   			$output.='<div class="SP-random-post-clear-top"></div>';	
 			// image fin
-			if($args['thumbsaffiche']!=0)$output.='<img  class="simplicy-random-post-img" width="'.$args['thumbsrand'].'" height="'.$args['thumbsrand'].'" src="'.$thumb.'" alt="" />';
+			if($args['thumbsaffiche']!=0)$output.='<img  class="simplicy-random-post-img" width="'.$args['thumbsrand'].'" height="'.$args['thumbsrand'].'" src="'.$image.'" alt="" />'; }
 			$output.='<li id="random-post-'.get_the_ID().'" class="simplicy-random-post"><div class="random-post-title"><a title="'.get_the_title().'" href="'.get_permalink().'">'.get_the_title().'</a>';
 			
 			$output.='<dd class="simplicy-date_random-post">'.get_the_date().'</dd>';
@@ -171,50 +172,93 @@ echo '<p><label for="'.$this->get_field_name('thumbsrand').'">'.__('Taille de la
 }
 
 // ******************************************************** fonction image ***************************************************************
- 
-
-function vp_get_thumbs_random_url($text)
-{
-  global $post;
- 
-  $imageurl="";        
- 
-  // extract the thumbnail from attached imaged
-  $allimages =&get_children('post_type=attachment&post_mime_type=image&post_parent=' . $post->ID );        
- 
-  foreach ($allimages as $img){                
-     $img_src = wp_get_attachment_image_src($img->ID);
-     break;                       
-  }
- 
-  $imageurl=$img_src[0];
- 
- 
-  // try to get any image
-  if (!$imageurl)
-  {
-    preg_match('/<\s*img [^\>]*src\s*=\s*[\""\']?([^\""\'>]*)/i' ,  $text, $matches);
-    $imageurl=$matches[1];
-  }
- 
-  // try to get youtube video thumbnail
-  if (!$imageurl)
-  {
-    preg_match("/([a-zA-Z0-9\-\_]+\.|)youtube\.com\/watch(\?v\=|\/v\/)([a-zA-Z0-9\-\_]{11})([^<\s]*)/", $text, $matches2);
- 
-    $youtubeurl = $matches2[0];
-    if ($youtubeurl)
-     $imageurl = "http://i.ytimg.com/vi/{$matches2[3]}/1.jpg"; 
-   else preg_match("/([a-zA-Z0-9\-\_]+\.|)youtube\.com\/(v\/)([a-zA-Z0-9\-\_]{11})([^<\s]*)/", $text, $matches2);
- 
-   $youtubeurl = $matches2[0];
-   if ($youtubeurl)
-     $imageurl = "http://i.ytimg.com/vi/{$matches2[3]}/1.jpg"; 
-  }
- 
- 
-return $imageurl;
+function sp_post_ramdom_resize( $url, $width, $height = null, $crop = null, $single = true ) {
+	
+	//validate inputs
+	if(!$url OR !$width ) return false;
+	
+	//define upload path & dir
+	$upload_info = wp_upload_dir();
+	$upload_dir = $upload_info['basedir'];
+	$upload_url = $upload_info['baseurl'];
+	
+	//check if $img_url is local
+	if(strpos( $url, $upload_url ) === false) return false;
+	
+	//define path of image
+	$rel_path = str_replace( $upload_url, '', $url);
+	$img_path = $upload_dir . $rel_path;
+	
+	//check if img path exists, and is an image indeed
+	if( !file_exists($img_path) OR !getimagesize($img_path) ) return false;
+	
+	//get image info
+	$info = pathinfo($img_path);
+	$ext = $info['extension'];
+	list($orig_w,$orig_h) = getimagesize($img_path);
+	
+	//get image size after cropping
+	$dims = image_resize_dimensions($orig_w, $orig_h, $width, $height, $crop);
+	$dst_w = $dims[4];
+	$dst_h = $dims[5];
+	
+	//use this to check if cropped image already exists, so we can return that instead
+	$suffix = "{$dst_w}x{$dst_h}";
+	$dst_rel_path = str_replace( '.'.$ext, '', $rel_path);
+	$destfilename = "{$upload_dir}{$dst_rel_path}-{$suffix}.{$ext}";
+	
+	//if orig size is smaller
+	if($width >= $orig_w) {
+		
+		if(!$dst_h) :
+			//can't resize, so return original url
+			$img_url = $url;
+			$dst_w = $orig_w;
+			$dst_h = $orig_h;
+			
+		else :
+			//else check if cache exists
+			if(file_exists($destfilename) && getimagesize($destfilename)) {
+				$img_url = "{$upload_url}{$dst_rel_path}-{$suffix}.{$ext}";
+			} 
+			//else resize and return the new resized image url
+			else {
+				$resized_img_path = image_resize( $img_path, $width, $height, $crop );
+				$resized_rel_path = str_replace( $upload_dir, '', $resized_img_path);
+				$img_url = $upload_url . $resized_rel_path;
+			}
+			
+		endif;
+		
+	}
+	//else check if cache exists
+	elseif(file_exists($destfilename) && getimagesize($destfilename)) {
+		$img_url = "{$upload_url}{$dst_rel_path}-{$suffix}.{$ext}";
+	} 
+	//else, we resize the image and return the new resized image url
+	else {
+		$resized_img_path = image_resize( $img_path, $width, $height, $crop );
+		$resized_rel_path = str_replace( $upload_dir, '', $resized_img_path);
+		$img_url = $upload_url . $resized_rel_path;
+	}
+	
+	//return the output
+	if($single) {
+		//str return
+		$image = $img_url;
+	} else {
+		//array return
+		$image = array (
+			0 => $img_url,
+			1 => $dst_w,
+			2 => $dst_h
+		);
+	}
+	
+	return $image;
 }
+
+// Fin fonction image
 
 function WARP__widget_init(){
 	register_widget('WARP__widget');
