@@ -59,7 +59,7 @@ function WARP_sp1_Random_posts($args=''){
 			$thumb = get_post_thumbnail_id(); $img_url = wp_get_attachment_url( $thumb,'full' ); $image = sp_post_ramdom_resize( $img_url, $args['thumb_w'], $args['thumb_h'], true ); 
   			$output.='<div class="SP-random-post-clear-top"></div>';	
 			// image fin
-			if($args['thumbsaffiche']!=0)$output.='<img  class="simplicy-random-post-img" width="'.$args['thumb_w'].'" height="'.$args['thumb_h'].'" src="'.$image.'" alt="" />'; }
+			if($args['thumbsaffiche']!=0)$output.='<a href="'.get_permalink().'" title="'.get_the_title().'"><img  class="simplicy-random-post-img" width="'.$args['thumb_w'].'" height="'.$args['thumb_h'].'" src="'.$image.'" alt="" /></a>'; }
 			$output.='<li id="random-post-'.get_the_ID().'" class="simplicy-random-post"><div class="random-post-title"><a title="'.get_the_title().'" href="'.get_permalink().'">'.get_the_title().'</a>';
 			
 			if($args['dateaffiche']!=0)$output.='<dd class="simplicy-date_random-post">'.get_the_date().'</dd>'; 
