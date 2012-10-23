@@ -52,6 +52,8 @@ Version 1.5 (01/03/2012)<br />
 <p> fixing bugs </p>
 Version 1.6 (08/10/2012)<br />
 <p> Changing the image function </p>
+Version 1.7 (23/10/2012)<br />
+<p> adding options </p>
 
 
 
